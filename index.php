@@ -1,4 +1,7 @@
 <?php 
+
+	require_once("includes/php/functions.php");
+
 	if(isset($_POST['toCheck']))
 	{
 		print_r($_POST);
@@ -98,32 +101,9 @@
         <div class="page-header">
           <h1>Master Dignostics Tool</h1>
         </div>
-<form class="form-horizontal" action="index.php" method="POST">
-<fieldset>
-
-<!-- Form Name -->
-<legend>Quickcheck</legend>
-
-<!-- Text input-->
-<div class="control-group">
-  <label class="control-label" for="toCheck">Domain or IP</label>
-  <div class="controls">
-    <input id="toCheck" name="toCheck" type="text" placeholder="google.com" class="input-xlarge" required="">
-    <p class="help-block">Put your domain or IP here</p>
-  </div>
-</div>
-
-<!-- Button -->
-<div class="control-group">
-  <label class="control-label" for="submit"></label>
-  <div class="controls">
-    <button id="submit" name="submit" class="btn btn-success">Run MDT</button>
-  </div>
-</div>
-
-</fieldset>
-</form>
-
+	<?php
+		writeInputForm();
+	?>
       </div>
 
       <div id="push"></div>
