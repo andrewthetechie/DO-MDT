@@ -4,8 +4,34 @@
 
 	if(isset($_POST['toCheck']))
 	{
-		print_r($_POST);
-		die();
+		if(filter_var($_POST['toCheck'],FILTER_VALIDATE_URL))
+		{
+			$parsed = parse_url($_POST['toCheck']);
+			$_POST['toCheck']=$parsed['host'];
+		}
+
+		if(filter_var($_POST['toCheck'],FILTER_VALIDATE_IP))
+		{
+			echo "is ip";
+			if(isPrivateIP($_POST['toCheck']))
+			{
+				echo "<br />Why you try to check local ip?!!?";
+			}
+		}else if(isDomainName($_POST['toCheck']))
+		{
+			echo "im a domain";
+			
+			if(!checkdnsrr($_POST['toCheck'],"NS") 
+				&& !checkdnsrr($_POST['toCheck'],"A"))
+			{
+				echo "DOMAIN NO EXISTS!";
+			}	
+			
+		}
+		else
+		{
+			echo "Why you pass me garbage?";
+		}
 
 	}
 
