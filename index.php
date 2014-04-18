@@ -1,4 +1,12 @@
+<?php 
+	if(isset($_POST['toCheck']))
+	{
+		print_r($_POST);
+		die();
 
+	}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -90,7 +98,7 @@
         <div class="page-header">
           <h1>Master Dignostics Tool</h1>
         </div>
-<form class="form-horizontal">
+<form class="form-horizontal" action="index.php" method="POST">
 <fieldset>
 
 <!-- Form Name -->
