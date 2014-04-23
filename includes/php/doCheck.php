@@ -42,7 +42,8 @@
 			break;
 
 		case 'ip':
-			$retval=shell_exec($path .'checkIPInfo.sh ' . $q);	
+			echo "RDNS: " . $info['RDNS'];
+			echo "<br />Webhost Info: " . $info['WEBHOST'];
 			break;
 		
 		case 'dns':

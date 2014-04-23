@@ -166,6 +166,9 @@
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 	<script>
 		$(document).ready(function() {
+		    $("#ipResult").load("includes/php/doCheck.php?type=ip&toCheck=<?php echo urlencode($_POST['toCheck']); ?>");
+		});
+		$(document).ready(function() {
 		    $("#domainResult").load("includes/php/doCheck.php?type=domain&toCheck=<?php echo urlencode($_POST['toCheck']); ?>");
 		});
 		$(document).ready(function() {
