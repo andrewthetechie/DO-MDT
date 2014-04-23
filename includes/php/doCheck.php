@@ -79,6 +79,13 @@
 				echo "<li>".$txtrecs[$i]."</li>";
 			}
 			echo "</ul>";
+			echo "<h5>NS Records</h5>";
+			echo "<ul>";
+			$nsrecs = explode(",",$info['NS']);
+			for($i=0; $i<count($nsrecs); $i++)
+				echo "<li>".$nsrecs[$i]."</li>";
+			echo "</ul>";
+
 			echo "<h5>rDNS Info Hosting Provider</h5> " . $info['Hosting'];		
 			break;
 		
