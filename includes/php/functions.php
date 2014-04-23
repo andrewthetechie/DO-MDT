@@ -1,4 +1,5 @@
 <?php
+	include("config.php");
 
 	//Validation functions
 
@@ -49,7 +50,7 @@
 	function writeInputForm()
 	{
 		echo "<form class='form-horizontal' name='MDT' ";
-			echo "action='index.php' method='POST'>";
+			echo "action='result.php' method='POST'>";
 		echo "<fieldset>";
 
 		echo "<legend>Master Diagnostic Tool</legend>";

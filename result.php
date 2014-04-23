@@ -2,6 +2,40 @@
 
 	require_once("includes/php/functions.php");
 
+	if(isset($_POST['toCheck']))
+	{
+		if(filter_var($_POST['toCheck'],FILTER_VALIDATE_URL))
+		{
+			$parsed = parse_url($_POST['toCheck']);
+			$_POST['toCheck']=$parsed['host'];
+		}
+
+		if(filter_var($_POST['toCheck'],FILTER_VALIDATE_IP))
+		{
+			if(isPrivateIP($_POST['toCheck']))
+			{
+				header("Location: index.php?error=privateIP");
+			}
+			$type = "IP";
+		}else if(isDomainName($_POST['toCheck']))
+		{
+			if(!checkdnsrr($_POST['toCheck'],"NS") 
+				&& !checkdnsrr($_POST['toCheck'],"A"))
+			{
+				header("Location: index.php?error=badDomain");
+			}	
+			$type="Domain";
+		}
+		else
+		{
+			header("Location: index.php?error=badInput");
+		}
+
+	}else
+	{
+		header("Location: index.php?error=noInput");
+	}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -92,13 +126,28 @@
       <!-- Begin page content -->
       <div class="container">
         <div class="page-header">
-          <h1>Master Dignostics Tool</h1>
+          <h1>Results for <?php echo $_POST['toCheck']; ?></h1>
+		<form name="goback" action="index.php" method="POST">
+		    <button id="singlebutton" name="singlebutton" 
+			class="btn btn-success">Test Another Domain</button>
+		</form>
         </div>
-	<?php
-		writeInputForm();
-	?>
+	<h3><?php echo $type; ?> information</h3>
+	<div id="domainResult"
+		<?php if($type=="IP") echo "style='display: none;'"; ?>
+		><img src="assets/img/loading.gif" width="250" height="250"/></div>
+	<div id="ipResult"
+		<?php if($type=="Domain") echo "style='display: none;'"; ?>
+	><img src="assets/img/loading.gif" width="250" height="250"/></div>
+	<h3
+		<?php if($type=="IP") echo "style='display: none;'"; ?>
+	>DNS Information</h3>
+	<div id="dnsResult"
+		<?php if($type=="IP") echo "style='display: none;'"; ?>
+	><img src="assets/img/loading.gif" width="250" height="250"/></div>
+	<h3>Port Scan Results</h3>
+	<div id="portResult"><img src="assets/img/loading.gif" width="250" height="250"/></div>
       </div>
-	<div id="domainResult"></div>
       <div id="push"></div>
     </div>
 
@@ -115,6 +164,16 @@
     <!-- Le javascript
     ================================================== -->
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-	
+	<script>
+		$(document).ready(function() {
+		    $("#domainResult").load("includes/php/doCheck.php?type=domain&toCheck=<?php echo urlencode($_POST['toCheck']); ?>");
+		});
+		$(document).ready(function() {
+		    $("#dnsResult").load("includes/php/doCheck.php?type=dns&toCheck=<?php echo urlencode($_POST['toCheck']); ?>");
+		});
+		$(document).ready(function() {
+		    $("#portResult").load("includes/php/doCheck.php?type=port&toCheck=<?php echo urlencode($_POST['toCheck']); ?>");
+		});
+	</script>
   </body>
 </html>

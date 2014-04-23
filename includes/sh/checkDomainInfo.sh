@@ -61,6 +61,6 @@ fi
 ##
 
 
-echo { \"DomainInfo\": { \"Name\": \"$DOMAIN\", \"Expiration\": \"$EXP\", 
-echo \"Registrar\": \"$REG\" } }
+echo { \"Name\": \"$DOMAIN\", \"Expiration\": \"$EXP\", 
+echo \"Registrar\": \"$REG\" }
 exit 0

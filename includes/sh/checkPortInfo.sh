@@ -13,7 +13,7 @@ if [ -n "${AREC[0]}" ]; then
 fi
 #PORTS
 if [ -n "${AREC[0]}" ]; then
-        PORTS=$(nmap -P0 -p 21,22,25,26,53,80,110,143,465,587,993,995,2082,2086,3306, "$scdoi" 2>/dev/null | grep -i tcp | grep -i open | awk '{print$1,$2","}')
+        PORTS=$(nmap -P0 -p 21,22,25,26,53,80,110,143,443,465,587,993,995,2082,2086,3306, "$scdoi" 2>/dev/null | grep -i tcp | grep -i open | awk '{print$1,$2","}')
         if [ -z "$PORTS" ]; then
                 PORTS="NONE "
         fi

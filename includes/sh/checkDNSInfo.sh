@@ -66,8 +66,8 @@ else
 	wehbost="NOT FOUND"
 fi
 #############################################
-echo { \"DNS\": { \"A\": \"${ARECPRINT#?}\", \"MX\": \"${MXREC%?}\", \"RDNS\":
-echo \"$RDNSREC\", \"NS\": \"${nameservers%?}\", \"TXT\": \"$TXTREC\" },
+echo { \"A\": \"${ARECPRINT#?}\", \"MX\": \"${MXREC%?}\", \"RDNS\":
+echo \"$RDNSREC\", \"NS\": \"${nameservers%?}\", \"TXT\": \"$TXTREC\",
 echo \"Hosting\": \"$webhost\" }
 
 exit 0
