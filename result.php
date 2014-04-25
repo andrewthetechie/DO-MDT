@@ -4,6 +4,8 @@
 
 	if(isset($_POST['toCheck']))
 	{
+		//trim any trailing or beginning spaces
+		$_POST['toCheck'] = trim($_POST['toCheck']);
 		if(filter_var($_POST['toCheck'],FILTER_VALIDATE_URL))
 		{
 			$parsed = parse_url($_POST['toCheck']);
