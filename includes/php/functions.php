@@ -62,7 +62,7 @@
 		echo "<div class='controls'>";
 		echo "<input id='toCheck' name='toCheck' type='text' ";
 			echo "placeholder='google.com' class='input-xlarge' ";
-			echo "required=''>";
+			echo "required='' autofocus>";
 		echo "<p class='help-block'>Domain, IP, or URL</p>";
 		echo "</div>";
 		echo "</div>";
